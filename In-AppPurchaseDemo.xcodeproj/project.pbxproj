@@ -7,18 +7,47 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F7A9F6502C90296A0097733E /* IAPurchaseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A9F64F2C90296A0097733E /* IAPurchaseError.swift */; };
+		F7A9F6522C9061790097733E /* IAPView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A9F6512C9061790097733E /* IAPView.swift */; };
+		F7A9F6542C9065A70097733E /* SubscriptionOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A9F6532C9065A70097733E /* SubscriptionOptionView.swift */; };
+		F7A9F6562C919FA30097733E /* SubscriptionOptionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A9F6552C919FA30097733E /* SubscriptionOptionViewModel.swift */; };
+		F7A9F65A2C91A5040097733E /* SubscriptionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A9F6592C91A5040097733E /* SubscriptionDataSource.swift */; };
+		F7A9F65E2C91D2450097733E /* InAppProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7A9F65D2C91D2450097733E /* InAppProduct.swift */; };
 		F7EA5ECC2C90173B004AA5CC /* In_AppPurchaseDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EA5ECB2C90173B004AA5CC /* In_AppPurchaseDemoApp.swift */; };
 		F7EA5ECE2C90173B004AA5CC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EA5ECD2C90173B004AA5CC /* ContentView.swift */; };
 		F7EA5ED02C90173D004AA5CC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7EA5ECF2C90173D004AA5CC /* Assets.xcassets */; };
 		F7EA5ED32C90173D004AA5CC /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F7EA5ED22C90173D004AA5CC /* Preview Assets.xcassets */; };
+		F7EA5EDA2C90175D004AA5CC /* IAPViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EA5ED92C90175D004AA5CC /* IAPViewModel.swift */; };
+		F7EA5EDC2C901782004AA5CC /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EA5EDB2C901782004AA5CC /* NetworkManager.swift */; };
+		F7EA5EDE2C90179B004AA5CC /* CoinManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EA5EDD2C90179B004AA5CC /* CoinManager.swift */; };
+		F7EA5EE02C9017B7004AA5CC /* PersistentStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EA5EDF2C9017B7004AA5CC /* PersistentStorage.swift */; };
+		F7EA5EE32C9017EE004AA5CC /* IAPViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EA5EE22C9017EE004AA5CC /* IAPViewModelTests.swift */; };
+		F7EA5EE52C90182A004AA5CC /* IntegrationTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EA5EE42C90182A004AA5CC /* IntegrationTesting.swift */; };
+		F7EA5EE72C901845004AA5CC /* UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EA5EE62C901845004AA5CC /* UITests.swift */; };
+		F7EA5EEC2C901F44004AA5CC /* KeyChainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7EA5EEB2C901F44004AA5CC /* KeyChainManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F7A9F64F2C90296A0097733E /* IAPurchaseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPurchaseError.swift; sourceTree = "<group>"; };
+		F7A9F6512C9061790097733E /* IAPView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPView.swift; sourceTree = "<group>"; };
+		F7A9F6532C9065A70097733E /* SubscriptionOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionOptionView.swift; sourceTree = "<group>"; };
+		F7A9F6552C919FA30097733E /* SubscriptionOptionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionOptionViewModel.swift; sourceTree = "<group>"; };
+		F7A9F6592C91A5040097733E /* SubscriptionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionDataSource.swift; sourceTree = "<group>"; };
+		F7A9F65D2C91D2450097733E /* InAppProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InAppProduct.swift; sourceTree = "<group>"; };
+		F7A9F65F2C92055B0097733E /* Product.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = Product.storekit; sourceTree = "<group>"; };
 		F7EA5EC82C90173B004AA5CC /* In-AppPurchaseDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "In-AppPurchaseDemo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F7EA5ECB2C90173B004AA5CC /* In_AppPurchaseDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = In_AppPurchaseDemoApp.swift; sourceTree = "<group>"; };
 		F7EA5ECD2C90173B004AA5CC /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		F7EA5ECF2C90173D004AA5CC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F7EA5ED22C90173D004AA5CC /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		F7EA5ED92C90175D004AA5CC /* IAPViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPViewModel.swift; sourceTree = "<group>"; };
+		F7EA5EDB2C901782004AA5CC /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		F7EA5EDD2C90179B004AA5CC /* CoinManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoinManager.swift; sourceTree = "<group>"; };
+		F7EA5EDF2C9017B7004AA5CC /* PersistentStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStorage.swift; sourceTree = "<group>"; };
+		F7EA5EE22C9017EE004AA5CC /* IAPViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPViewModelTests.swift; sourceTree = "<group>"; };
+		F7EA5EE42C90182A004AA5CC /* IntegrationTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationTesting.swift; sourceTree = "<group>"; };
+		F7EA5EE62C901845004AA5CC /* UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITests.swift; sourceTree = "<group>"; };
+		F7EA5EEB2C901F44004AA5CC /* KeyChainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,10 +80,23 @@
 		F7EA5ECA2C90173B004AA5CC /* In-AppPurchaseDemo */ = {
 			isa = PBXGroup;
 			children = (
+				F7A9F65F2C92055B0097733E /* Product.storekit */,
+				F7EA5EE12C9017D4004AA5CC /* Testing */,
 				F7EA5ECB2C90173B004AA5CC /* In_AppPurchaseDemoApp.swift */,
 				F7EA5ECD2C90173B004AA5CC /* ContentView.swift */,
 				F7EA5ECF2C90173D004AA5CC /* Assets.xcassets */,
 				F7EA5ED12C90173D004AA5CC /* Preview Content */,
+				F7EA5ED92C90175D004AA5CC /* IAPViewModel.swift */,
+				F7EA5EDB2C901782004AA5CC /* NetworkManager.swift */,
+				F7EA5EDD2C90179B004AA5CC /* CoinManager.swift */,
+				F7EA5EDF2C9017B7004AA5CC /* PersistentStorage.swift */,
+				F7EA5EEB2C901F44004AA5CC /* KeyChainManager.swift */,
+				F7A9F64F2C90296A0097733E /* IAPurchaseError.swift */,
+				F7A9F6532C9065A70097733E /* SubscriptionOptionView.swift */,
+				F7A9F6552C919FA30097733E /* SubscriptionOptionViewModel.swift */,
+				F7A9F6592C91A5040097733E /* SubscriptionDataSource.swift */,
+				F7A9F6512C9061790097733E /* IAPView.swift */,
+				F7A9F65D2C91D2450097733E /* InAppProduct.swift */,
 			);
 			path = "In-AppPurchaseDemo";
 			sourceTree = "<group>";
@@ -65,6 +107,16 @@
 				F7EA5ED22C90173D004AA5CC /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		F7EA5EE12C9017D4004AA5CC /* Testing */ = {
+			isa = PBXGroup;
+			children = (
+				F7EA5EE22C9017EE004AA5CC /* IAPViewModelTests.swift */,
+				F7EA5EE42C90182A004AA5CC /* IntegrationTesting.swift */,
+				F7EA5EE62C901845004AA5CC /* UITests.swift */,
+			);
+			path = Testing;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -137,8 +189,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F7EA5EE02C9017B7004AA5CC /* PersistentStorage.swift in Sources */,
+				F7EA5EDC2C901782004AA5CC /* NetworkManager.swift in Sources */,
+				F7A9F6522C9061790097733E /* IAPView.swift in Sources */,
+				F7EA5EDA2C90175D004AA5CC /* IAPViewModel.swift in Sources */,
+				F7A9F6502C90296A0097733E /* IAPurchaseError.swift in Sources */,
+				F7A9F65E2C91D2450097733E /* InAppProduct.swift in Sources */,
+				F7A9F6542C9065A70097733E /* SubscriptionOptionView.swift in Sources */,
+				F7EA5EEC2C901F44004AA5CC /* KeyChainManager.swift in Sources */,
+				F7A9F65A2C91A5040097733E /* SubscriptionDataSource.swift in Sources */,
+				F7EA5EE32C9017EE004AA5CC /* IAPViewModelTests.swift in Sources */,
 				F7EA5ECE2C90173B004AA5CC /* ContentView.swift in Sources */,
+				F7A9F6562C919FA30097733E /* SubscriptionOptionViewModel.swift in Sources */,
+				F7EA5EE52C90182A004AA5CC /* IntegrationTesting.swift in Sources */,
 				F7EA5ECC2C90173B004AA5CC /* In_AppPurchaseDemoApp.swift in Sources */,
+				F7EA5EE72C901845004AA5CC /* UITests.swift in Sources */,
+				F7EA5EDE2C90179B004AA5CC /* CoinManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,7 +338,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"In-AppPurchaseDemo/Preview Content\"";
-				DEVELOPMENT_TEAM = A3C2DQ9TYS;
+				DEVELOPMENT_TEAM = 6RRUPQTV3Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -280,12 +346,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Insta.InstaZoomApp.In-AppPurchaseDemo";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Insta.InstaZoomApp.In-AppPurchase";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -301,7 +368,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"In-AppPurchaseDemo/Preview Content\"";
-				DEVELOPMENT_TEAM = A3C2DQ9TYS;
+				DEVELOPMENT_TEAM = 6RRUPQTV3Q;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -309,12 +376,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.Insta.InstaZoomApp.In-AppPurchaseDemo";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Insta.InstaZoomApp.In-AppPurchase";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
