@@ -10,6 +10,7 @@ import SwiftUI
 import StoreKit
 
 struct SubscriptionOptionView: View {
+    @EnvironmentObject var environmentObject: EnvironmentObj
     var iaProduct : IAPProduct
     var price : String
     @Binding var selectedProductId: String?

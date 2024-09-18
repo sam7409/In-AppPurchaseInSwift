@@ -8,8 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var environmentObject = EnvironmentObj()
     var body: some View {
-        IAPView(iapViewModel: IAPViewModel(isSingleTemplateSelectedOrNot: true, image: Image("p1")))
+//        IAPView(iapViewModel: IAPViewModel(isSingleTemplateSelectedOrNot: true, image: Image("p1")))
+        HomePage().environmentObject(environmentObject)
     }
 }
 

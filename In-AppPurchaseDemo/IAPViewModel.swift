@@ -53,7 +53,7 @@ class IAPViewModel: IAPViewModelProtocol {
     
     let yearlyTemplateProduct =  IAPProduct(productIdentifier: "com.irisstudio.watermarkpro.monthly", localizedTitleSuffix: "", freeTrialDays: 7, features: ["No Ads - No Watermark", "All Premium Content"], oldUserDefaultKeyIfAny: "", cellImage: Image("p2"), title: "Yearly", subTitle: "Full Access Subscription", isHighlighted: true, status: "Save 80%", tag: "/ Yearly")
     
-    init(isSingleTemplateSelectedOrNot : Bool , image : Image) {
+    init(isSingleTemplateSelectedOrNot : Bool , image : Image = Image(systemName: "p1")) {
         self.consumableImage = image
         singleTemplateProduct.cellImage = image
         self.isSingleTemplateSelectedOrNot = isSingleTemplateSelectedOrNot
@@ -66,13 +66,18 @@ class IAPViewModel: IAPViewModelProtocol {
 //                let productIDs = ["com.irisstudio.watermarkPre.pro", "com.irisstudio.watermarkpro.monthly", "com.irisstudio.watermarkpro.yearly"]
                 let productIDs = ["Monthly", "Yearly", "singleTemplate"]
                 let products = try await Product.products(for: productIDs)
-                self.availableProducts = products
+                DispatchQueue.main.async {
+                    self.availableProducts = products
+                }
+                          
                 
                 for await result in Transaction.currentEntitlements {
                     switch result {
                     case .verified(let transaction):
                         if let product = products.first(where: { $0.id == transaction.productID }) {
-                            self.purchasedProducts.insert(product)
+                            DispatchQueue.main.async {
+                                self.purchasedProducts.insert(product)
+                            }
                         }
                     case .unverified(_, _):
                         break
@@ -90,20 +95,26 @@ class IAPViewModel: IAPViewModelProtocol {
                     }
                 }
             } catch {
-                self.errorMessage = "Failed to load products."
+                DispatchQueue.main.async {
+                    self.errorMessage = "Failed to load products."
+                }
             }
         }
     }
     
     func purchaseProduct(product: Product) {
-        purchaseStatus = .processing
+        DispatchQueue.main.async {
+            self.purchaseStatus = .processing
+        }
         Task {
             do {
                 let result = try await product.purchase()
                 await handlePurchaseVerification(result)
             } catch {
-                purchaseStatus = .failure
-                errorMessage = "Purchase failed: \(error.localizedDescription)"
+                DispatchQueue.main.async {
+                    self.purchaseStatus = .failure
+                    self.errorMessage = "Purchase failed: \(error.localizedDescription)"
+                }
             }
         }
     }
@@ -132,23 +143,31 @@ class IAPViewModel: IAPViewModelProtocol {
     }
     
     func restorePurchases() {
-        purchaseStatus = .processing
+        DispatchQueue.main.async {
+            self.purchaseStatus = .processing
+        }
         Task {
             do {
                 for await result in Transaction.currentEntitlements {
                     switch result {
                     case .verified(let transaction):
                         if let product = availableProducts.first(where: { $0.id == transaction.productID }) {
-                            purchasedProducts.insert(product)
+                            DispatchQueue.main.async {
+                                self.purchasedProducts.insert(product)
+                            }
                         }
                     case .unverified(_, _):
                         break
                     }
                 }
-                purchaseStatus = .success
+                DispatchQueue.main.async {
+                    self.purchaseStatus = .success
+                }
             } catch {
-                purchaseStatus = .failure
-                errorMessage = "Failed to restore purchases: \(error.localizedDescription)"
+                DispatchQueue.main.async {
+                    self.purchaseStatus = .failure
+                    self.errorMessage = "Failed to restore purchases: \(error.localizedDescription)"
+                }
             }
         }
     }

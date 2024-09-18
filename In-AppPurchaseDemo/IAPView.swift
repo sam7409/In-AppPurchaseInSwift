@@ -9,6 +9,7 @@ import SwiftUI
 import StoreKit
 
 struct IAPView: View {
+    @EnvironmentObject var environmentObject: EnvironmentObj
     @Environment(\.presentationMode) var presentationMode
     @ObservedObject var iapViewModel : IAPViewModel
     @State var selectedProductId: String? = nil
@@ -185,9 +186,16 @@ struct IAPView: View {
                     }
                 }
             }
-            
-                .frame(width: geometry.size.width) // Ensure it takes up the full width
-                .padding(.vertical)
+            .frame(width: geometry.size.width) // Ensure it takes up the full width
+            .padding(.vertical)
+            .onReceive(iapViewModel.$purchaseStatus) { purchaseStatus in
+                if purchaseStatus == .success{
+                    environmentObject.isPremium = true
+                }
+                else if purchaseStatus == .failure{
+                    environmentObject.isPremium = false
+                }
+            }
         }
             
     }
