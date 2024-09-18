@@ -12,12 +12,6 @@ struct IAPView: View {
     @ObservedObject var iapViewModel : IAPViewModel
     @State var selectedProductId: String? = nil
     let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
-    
-    let singleTemplateProduct = IAPProduct(productIdentifier: "com.irisstudio.watermarkpro.monthly", localizedTitleSuffix: "", freeTrialDays: 7, features: ["No Watermark", "Unlock Single Template"], oldUserDefaultKeyIfAny: "", cellImage: Image("p1"), title: "Single", subTitle: "Only One Template", isHighlighted: false, status: "", tag: "/ Only One")
-    
-    let monthlyTemplateProduct =  IAPProduct(productIdentifier: "com.irisstudio.watermarkpro.monthly", localizedTitleSuffix: "", freeTrialDays: 7, features: ["No Ads - No Watermark", "All Premium Content"], oldUserDefaultKeyIfAny: "", cellImage: Image("p2"), title: "Monthly", subTitle: "Full Access Subscription", isHighlighted: false, status: "Most Popular", tag: "/ Monthly")
-    
-    let yearlyTemplateProduct =  IAPProduct(productIdentifier: "com.irisstudio.watermarkpro.monthly", localizedTitleSuffix: "", freeTrialDays: 7, features: ["No Ads - No Watermark", "All Premium Content"], oldUserDefaultKeyIfAny: "", cellImage: Image("p2"), title: "Yearly", subTitle: "Full Access Subscription", isHighlighted: true, status: "Save 80%", tag: "/ Yearly")
 
     
     var attributedText: AttributedString {
@@ -98,9 +92,9 @@ struct IAPView: View {
                     VStack(spacing: 10) {
                         ForEach(iapViewModel.availableProducts, id: \.id) { product in
                             // Single template option
-                            if product.type.rawValue == "Consumable"{
+                            if product.type.rawValue == "Non-Consumable" && iapViewModel.isSingleTemplateSelectedOrNot{
                                 // Single template option
-                                SubscriptionOptionView(iaProduct: singleTemplateProduct, price: product.displayPrice, selectedProductId: $selectedProductId, productId : product.id ).onTapGesture {
+                                SubscriptionOptionView(iaProduct: iapViewModel.singleTemplateProduct, price: product.displayPrice, selectedProductId: $selectedProductId, productId : product.id ).onTapGesture {
                                     // Trigger haptic feedback
                                     impactFeedback.impactOccurred()
                                     selectedProductId = product.id
@@ -111,7 +105,7 @@ struct IAPView: View {
                             
                             else if product.subscription?.subscriptionPeriod.unit == .month{
                                 // Monthly subscription option
-                                SubscriptionOptionView(iaProduct: monthlyTemplateProduct, price : product.displayPrice, selectedProductId: $selectedProductId, productId : product.id)
+                                SubscriptionOptionView(iaProduct: iapViewModel.monthlyTemplateProduct, price : product.displayPrice, selectedProductId: $selectedProductId, productId : product.id)
                                     .onTapGesture {
                                         // Trigger haptic feedback
                                         impactFeedback.impactOccurred()
@@ -123,7 +117,7 @@ struct IAPView: View {
                             
                             else if product.subscription?.subscriptionPeriod.unit == .year{
                                 // Yearly subscription option
-                                SubscriptionOptionView(iaProduct: yearlyTemplateProduct, price : product.displayPrice, selectedProductId: $selectedProductId, productId : product.id)
+                                SubscriptionOptionView(iaProduct: iapViewModel.yearlyTemplateProduct, price : product.displayPrice, selectedProductId: $selectedProductId, productId : product.id)
                                     .onTapGesture {
                                         // Trigger haptic feedback
                                         impactFeedback.impactOccurred()

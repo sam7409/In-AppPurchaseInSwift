@@ -7,6 +7,7 @@
 
 import StoreKit
 import Combine
+import SwiftUI
 
 protocol IAPViewModelProtocol: ObservableObject {
     var availableProducts: [Product] { get set }
@@ -40,19 +41,30 @@ class IAPViewModel: IAPViewModelProtocol {
     @Published var isReceiptValid: Bool = false
     @Published var isNetworkAvailable: Bool = true
     @Published var currentSelectedProduct : Product?
+    @Published var isSingleTemplateSelectedOrNot : Bool = false
+    var consumableImage : Image?
     
     private var cancellables = Set<AnyCancellable>()
     private let networkManager = NetworkManager()
     private let coinManager = CoinManager()
     
-    init() {
+    let singleTemplateProduct = IAPProduct(productIdentifier: "com.irisstudio.watermarkpro.monthly", localizedTitleSuffix: "", freeTrialDays: 7, features: ["No Watermark", "Unlock Single Template"], oldUserDefaultKeyIfAny: "", cellImage: Image("p1"), title: "Single", subTitle: "Only One Template", isHighlighted: false, status: "", tag: "/ Only One")
+    
+    let monthlyTemplateProduct =  IAPProduct(productIdentifier: "com.irisstudio.watermarkpro.monthly", localizedTitleSuffix: "", freeTrialDays: 7, features: ["No Ads - No Watermark", "All Premium Content"], oldUserDefaultKeyIfAny: "", cellImage: Image("p2"), title: "Monthly", subTitle: "Full Access Subscription", isHighlighted: false, status: "Most Popular", tag: "/ Monthly")
+    
+    let yearlyTemplateProduct =  IAPProduct(productIdentifier: "com.irisstudio.watermarkpro.monthly", localizedTitleSuffix: "", freeTrialDays: 7, features: ["No Ads - No Watermark", "All Premium Content"], oldUserDefaultKeyIfAny: "", cellImage: Image("p2"), title: "Yearly", subTitle: "Full Access Subscription", isHighlighted: true, status: "Save 80%", tag: "/ Yearly")
+    
+    init(isSingleTemplateSelectedOrNot : Bool , image : Image) {
+        self.consumableImage = image
+        singleTemplateProduct.cellImage = image
+        self.isSingleTemplateSelectedOrNot = isSingleTemplateSelectedOrNot
         loadProducts()
     }
     
     func loadProducts() {
         Task {
             do {
-                let productIDs = ["singleTemplate", "Monthly", "Yearly"]
+                let productIDs = ["com.irisstudio.watermarkPre.pro", "com.irisstudio.watermarkpro.monthly", "com.irisstudio.watermarkpro.yearly"]
                 let products = try await Product.products(for: productIDs)
                 self.availableProducts = products
                 

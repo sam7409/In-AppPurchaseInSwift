@@ -9,11 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-//        VStack {
-////            IAPView(viewModel: IAPViewModel())
-//
-//        }
-        IAPView(iapViewModel: IAPViewModel())
+        IAPView(iapViewModel: IAPViewModel(isSingleTemplateSelectedOrNot: true, image: Image("p1")))
         
     }
 }
