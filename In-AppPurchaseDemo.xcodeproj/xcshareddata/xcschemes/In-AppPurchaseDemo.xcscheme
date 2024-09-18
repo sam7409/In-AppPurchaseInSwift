@@ -49,6 +49,9 @@
             ReferencedContainer = "container:In-AppPurchaseDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
+      <StoreKitConfigurationFileReference
+         identifier = "../../In-AppPurchaseDemo/Product.storekit">
+      </StoreKitConfigurationFileReference>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

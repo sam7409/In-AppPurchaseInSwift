@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import StoreKit
 
 struct IAPView: View {
     @Environment(\.presentationMode) var presentationMode
@@ -86,58 +87,61 @@ struct IAPView: View {
                 }.frame(height: 150)
                 
                 
-                
-                ScrollView{
-                    // Subscription Options
-                    VStack(spacing: 10) {
-                        ForEach(iapViewModel.availableProducts, id: \.id) { product in
-                            // Single template option
-                            if product.type.rawValue == "Non-Consumable" && iapViewModel.isSingleTemplateSelectedOrNot{
+                if iapViewModel.purchasedProducts.isEmpty{
+                    ScrollView{
+                        // Subscription Options
+                        VStack(spacing: 10) {
+                            ForEach(iapViewModel.availableProducts, id: \.id) { product in
                                 // Single template option
-                                SubscriptionOptionView(iaProduct: iapViewModel.singleTemplateProduct, price: product.displayPrice, selectedProductId: $selectedProductId, productId : product.id ).onTapGesture {
-                                    // Trigger haptic feedback
-                                    impactFeedback.impactOccurred()
-                                    selectedProductId = product.id
-                                    iapViewModel.currentSelectedProduct = product
-                                    print("\(product.displayPrice)")
+                                if product.type.rawValue == "Consumable" && iapViewModel.isSingleTemplateSelectedOrNot{
+                                    // Single template option
+                                    SubscriptionOptionView(iaProduct: iapViewModel.singleTemplateProduct, price: product.displayPrice, selectedProductId: $selectedProductId, product : product, purchasedProduct : $iapViewModel.purchasedProducts).onTapGesture {
+                                        // Trigger haptic feedback
+                                        impactFeedback.impactOccurred()
+                                        selectedProductId = product.id
+                                        iapViewModel.currentSelectedProduct = product
+                                        print("\(product.displayPrice)")
+                                    }
                                 }
-                            }
-                            
-                            else if product.subscription?.subscriptionPeriod.unit == .month{
-                                // Monthly subscription option
-                                SubscriptionOptionView(iaProduct: iapViewModel.monthlyTemplateProduct, price : product.displayPrice, selectedProductId: $selectedProductId, productId : product.id)
-                                    .onTapGesture {
-                                        // Trigger haptic feedback
-                                        impactFeedback.impactOccurred()
-                                        selectedProductId = product.id
-                                        iapViewModel.currentSelectedProduct = product
-                                        print("\(product.displayPrice)")
-                                    }
-                            }
-                            
-                            else if product.subscription?.subscriptionPeriod.unit == .year{
-                                // Yearly subscription option
-                                SubscriptionOptionView(iaProduct: iapViewModel.yearlyTemplateProduct, price : product.displayPrice, selectedProductId: $selectedProductId, productId : product.id)
-                                    .onTapGesture {
-                                        // Trigger haptic feedback
-                                        impactFeedback.impactOccurred()
-                                        selectedProductId = product.id
-                                        iapViewModel.currentSelectedProduct = product
-                                        print("\(product.displayPrice)")
-                                    }
+                                
+                                else if product.subscription?.subscriptionPeriod.unit == .month{
+                                    // Monthly subscription option
+                                    SubscriptionOptionView(iaProduct: iapViewModel.monthlyTemplateProduct, price : product.displayPrice, selectedProductId: $selectedProductId, product : product, purchasedProduct : $iapViewModel.purchasedProducts)
+                                        .onTapGesture {
+                                            // Trigger haptic feedback
+                                            impactFeedback.impactOccurred()
+                                            selectedProductId = product.id
+                                            iapViewModel.currentSelectedProduct = product
+                                            print("\(product.displayPrice)")
+                                        }
+                                }
+                                
+                                else if product.subscription?.subscriptionPeriod.unit == .year{
+                                    // Yearly subscription option
+                                    SubscriptionOptionView(iaProduct: iapViewModel.yearlyTemplateProduct, price : product.displayPrice, selectedProductId: $selectedProductId, product : product, purchasedProduct : $iapViewModel.purchasedProducts)
+                                        .onTapGesture {
+                                            // Trigger haptic feedback
+                                            impactFeedback.impactOccurred()
+                                            selectedProductId = product.id
+                                            iapViewModel.currentSelectedProduct = product
+                                            print("\(product.displayPrice)")
+                                        }
+                                }
                             }
                         }
                     }
-                }
-                .padding(.horizontal)
-                
-                if iapViewModel.currentSelectedProduct != nil && iapViewModel.currentSelectedProduct?.type.rawValue != "Consumable"{
-                // Cancel anytime message
-                Text("Cancel Anytime")
-                    .font(.caption)
-                    .foregroundColor(.gray)
-                    .padding(.top, 10)
-            }
+                    .padding(.horizontal)
+                    
+                    
+                    
+                    
+                    if iapViewModel.currentSelectedProduct != nil && iapViewModel.currentSelectedProduct?.type.rawValue != "Consumable"{
+                        // Cancel anytime message
+                        Text("Cancel Anytime")
+                            .font(.caption)
+                            .foregroundColor(.gray)
+                            .padding(.top, 10)
+                    }
                     
                     // Continue button
                     Button(action: {
@@ -166,14 +170,26 @@ struct IAPView: View {
                     .padding(.top, 10)
                     
                     Text(attributedText)
-                               .font(.caption2)
-                               .padding(.top, 10)
+                        .font(.caption2)
+                        .padding(.top, 10)
                     
                     Spacer()
                 }
+                else{
+                    let product = iapViewModel.purchasedProducts.first!
+                    if product.subscription?.subscriptionPeriod.unit == .year{
+                        SubscribedView(subscriptionType: "Yearly ", product: iapViewModel.purchasedProducts.first!, iapViewModel: iapViewModel)
+                    }
+                    else{
+                        SubscribedView(subscriptionType: "Monthly ", product: iapViewModel.purchasedProducts.first!, iapViewModel: iapViewModel)
+                    }
+                }
+            }
+            
                 .frame(width: geometry.size.width) // Ensure it takes up the full width
                 .padding(.vertical)
         }
+            
     }
 }
 

@@ -7,11 +7,21 @@
 
 import Foundation
 import StoreKit
+import SwiftUI
 
 struct PersistentStorage {
+    
+    // Add AppStorage for subscription statuses
+    @AppStorage("com.iris.monthly") static var isMonthlySubscribed: Bool = false
+    @AppStorage("com.iris.yearly") static var isYearlySubscribed: Bool = false
+
     static func savePurchaseHistory(_ purchases: [Product]) {
         let productIdentifiers = purchases.map { $0.id }
         UserDefaults.standard.set(productIdentifiers, forKey: "purchaseHistory")
+        
+        // Update subscription statuses based on the purchase history
+        isMonthlySubscribed = productIdentifiers.contains("com.iris.monthly")
+        isYearlySubscribed = productIdentifiers.contains("com.iris.yearly")
     }
     
     static func loadPurchaseHistory() -> [Product] {

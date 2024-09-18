@@ -7,15 +7,19 @@
 
 
 import SwiftUI
+import StoreKit
 
 struct SubscriptionOptionView: View {
     var iaProduct : IAPProduct
     var price : String
     @Binding var selectedProductId: String?
-    var productId : String
+    var product : Product
+    var subscription : Subscription?
+    @Binding var purchasedProduct : Set<Product> 
    
     
     var body: some View {
+        VStack{
         HStack(alignment: .center) {
             // Placeholder for the image
             iaProduct.cellImage!
@@ -28,11 +32,11 @@ struct SubscriptionOptionView: View {
                 // Title and Subtitle
                 Text(iaProduct.title)
                     .font(.headline).bold()
-                    .foregroundColor(selectedProductId == productId ? Color.pink : Color.black)
+                    .foregroundColor(selectedProductId == product.id ? Color.pink : Color.black)
                 
                 Text(iaProduct.subtitle).bold()
                     .font(.caption)
-                    .foregroundColor(selectedProductId == productId ? Color.pink : Color.black)
+                    .foregroundColor(selectedProductId == product.id ? Color.pink : Color.black)
                 
                 // Features
                 ForEach(iaProduct.features, id: \.self) { item in
@@ -57,6 +61,13 @@ struct SubscriptionOptionView: View {
                     .foregroundColor(.gray)
             }
         }
+        
+            VStack(alignment: .center, content: {
+                if purchasedProduct.contains(product){
+                    Text("Purchased").foregroundColor(.green)
+                }
+            })
+    }
         .padding()
         .overlay(
             Group {
@@ -77,7 +88,10 @@ struct SubscriptionOptionView: View {
         )
         .background(
             RoundedRectangle(cornerRadius: 10)
-                .stroke(selectedProductId == productId ? Color.pink : Color.gray, lineWidth: 2)
+                .stroke(
+                    purchasedProduct.contains(product) ? Color.green :
+                    (selectedProductId == product.id ? Color.pink : Color.gray), lineWidth: 2
+                )
         )
         .padding(.horizontal)
     }

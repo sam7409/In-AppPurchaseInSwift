@@ -29,7 +29,6 @@ protocol IAPViewModelProtocol: ObservableObject {
     func deductCoinsForPurchase(product: Product)
 }
 
-
 class IAPViewModel: IAPViewModelProtocol {
     @Published var availableProducts: [Product] = []
     @Published var purchasedProducts: Set<Product> = []
@@ -60,21 +59,20 @@ class IAPViewModel: IAPViewModelProtocol {
         self.isSingleTemplateSelectedOrNot = isSingleTemplateSelectedOrNot
         loadProducts()
     }
-    
+  
     func loadProducts() {
         Task {
             do {
-                let productIDs = ["com.irisstudio.watermarkPre.pro", "com.irisstudio.watermarkpro.monthly", "com.irisstudio.watermarkpro.yearly"]
+//                let productIDs = ["com.irisstudio.watermarkPre.pro", "com.irisstudio.watermarkpro.monthly", "com.irisstudio.watermarkpro.yearly"]
+                let productIDs = ["Monthly", "Yearly", "singleTemplate"]
                 let products = try await Product.products(for: productIDs)
                 self.availableProducts = products
-                
-                var purchasedProducts = Set<Product>()
                 
                 for await result in Transaction.currentEntitlements {
                     switch result {
                     case .verified(let transaction):
                         if let product = products.first(where: { $0.id == transaction.productID }) {
-                            purchasedProducts.insert(product)
+                            self.purchasedProducts.insert(product)
                         }
                     case .unverified(_, _):
                         break

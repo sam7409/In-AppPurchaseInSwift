@@ -41,7 +41,7 @@ public enum IAPProductLife {
     }
 }
 
-public class IAPProduct {
+public class IAPProduct : Equatable {
     public var productIdentifier: String
     public var localizedTitleSuffix: String
     public var freeTrialDays: Int
@@ -55,6 +55,11 @@ public class IAPProduct {
     public var tag: String
     public var isHighlighted: Bool
     public var status: String
+    
+    // Implement the `==` operator for comparison
+    public static func ==(lhs: IAPProduct, rhs: IAPProduct) -> Bool {
+        return lhs.productIdentifier == rhs.productIdentifier // Use appropriate property comparison
+    }
     
 
     public init(productIdentifier: String, localizedTitleSuffix: String, freeTrialDays: Int, features: [String], oldUserDefaultKeyIfAny: String?, cellImage : Image, title : String , subTitle : String, isHighlighted : Bool, status : String, tag : String) {
